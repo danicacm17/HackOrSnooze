@@ -22,8 +22,8 @@ class Story {
   }
 
   /** Parses hostname out of URL and returns it. */
-
   getHostName() {
+    // Extract the hostname from the URL
     return new URL(this.url).host;
   }
 }
@@ -52,16 +52,16 @@ class StoryList {
     //  class directly. Why doesn't it make sense for getStories to be an
     //  instance method?
 
-    // query the /stories endpoint (no auth required)
+    // Query the /stories endpoint (no auth required)
     const response = await axios({
       url: `${BASE_URL}/stories`,
       method: "GET",
     });
 
-    // turn plain old story objects from API into instances of Story class
+    // Turn plain old story objects from API into instances of Story class
     const stories = response.data.stories.map(story => new Story(story));
 
-    // build an instance of our own class using the new array of stories
+    // Build an instance of our own class using the new array of stories
     return new StoryList(stories);
   }
 
@@ -80,7 +80,10 @@ class StoryList {
       data: { token, story: { title, author, url } },
     });
 
+    // Create a new Story instance from the API response
     const story = new Story(response.data.story);
+
+    // Add the new story to the beginning of the story lists
     this.stories.unshift(story);
     user.ownStories.unshift(story);
 
@@ -101,10 +104,10 @@ class StoryList {
       data: { token: user.loginToken }
     });
 
-    // filter out the story whose ID we are removing
+    // Filter out the story whose ID we are removing
     this.stories = this.stories.filter(story => story.storyId !== storyId);
 
-    // do the same thing for the user's list of stories & their favorites
+    // Do the same thing for the user's list of stories & their favorites
     user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
     user.favorites = user.favorites.filter(s => s.storyId !== storyId);
   }
@@ -133,11 +136,11 @@ class User {
     this.name = name;
     this.createdAt = createdAt;
 
-    // instantiate Story instances for the user's favorites and ownStories
+    // Instantiate Story instances for the user's favorites and ownStories
     this.favorites = favorites.map(s => new Story(s));
     this.ownStories = ownStories.map(s => new Story(s));
 
-    // store the login token on the user so it's easy to find for API calls.
+    // Store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
   }
 
@@ -170,7 +173,7 @@ class User {
   }
 
   /** Login in user with API, make User instance & return it.
-
+   *
    * - username: an existing user's username
    * - password: an existing user's password
    */
@@ -232,7 +235,7 @@ class User {
 
   async addFavorite(story) {
     this.favorites.push(story);
-    await this._addOrRemoveFavorite("add", story)
+    await this._addOrRemoveFavorite("add", story);
   }
 
   /** Remove a story to the list of user favorites and update the API
@@ -265,4 +268,5 @@ class User {
     return this.favorites.some(s => (s.storyId === story.storyId));
   }
 }
+
 

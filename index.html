@@ -35,9 +35,11 @@
 <!-- top navigation bar -->
 <nav>
   <div class="navbar-brand">
+    <!-- Main navigation link -->
     <a class="nav-link main-nav-links" href="#" id="nav-all">Hack or Snooze</a>
   </div>
   <div class="main-nav-links hidden">
+    <!-- Additional navigation links (Submit, Favorites, My Stories) -->
     |
     <a class="nav-link" href="#" id="nav-submit-story">Submit</a>
     |
@@ -46,33 +48,35 @@
     <a class="nav-link" href="#" id="nav-my-stories">My Stories</a>
   </div>
   <div class="nav-right">
+    <!-- Login/signup link -->
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
+    <!-- User profile link, initially hidden -->
     <a class="nav-link hidden main-nav-links" href="#" id="nav-user-profile"></a>
+    <!-- Logout link, initially hidden -->
     <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
   </div>
 </nav>
 
-
 <!-- area for stories (all stories, user stories, favorites) -->
 <section id="stories-container" class="stories-container container">
 
-    <!-- Add New Story Form -->
-    <form action="" class="hidden" id="submit-form">
-      <div>
-        <label for="create-author">author</label>
-        <input id="create-author" required placeholder="author name">
-      </div>
-      <div>
-        <label for="create-title">title</label>
-        <input id="create-title" required placeholder="story title">
-      </div>
-      <div>
-        <label for="create-url">url</label>
-        <input id="create-url" required type="url" placeholder="story url">
-      </div>
-      <button type="submit">submit</button>
-      <hr>
-    </form>
+  <!-- Add New Story Form, initially hidden -->
+  <form action="" class="hidden" id="submit-form">
+    <div>
+      <label for="create-author">author</label>
+      <input id="create-author" required placeholder="author name">
+    </div>
+    <div>
+      <label for="create-title">title</label>
+      <input id="create-title" required placeholder="story title">
+    </div>
+    <div>
+      <label for="create-url">url</label>
+      <input id="create-url" required type="url" placeholder="story url">
+    </div>
+    <button type="submit">submit</button>
+    <hr>
+  </form>
 
   <!-- loading message (removed by JS after stories loaded) -->
   <div id="stories-loading-msg">Loading&hellip;</div>
@@ -80,10 +84,10 @@
   <!-- List of all stories -->
   <ol id="all-stories-list" class="stories-list"></ol>
 
-  <!-- List of stories favorited by the user -->
+  <!-- List of stories favorited by the user, initially hidden -->
   <ol id="favorited-stories" class="hidden stories-list"></ol>
 
-  <!-- List of stories by the user -->
+  <!-- List of stories by the user, initially hidden -->
   <ol id="my-stories" class="hidden stories-list"></ol>
 
 </section>
@@ -107,11 +111,7 @@
   </form>
 
   <!-- Signup form -->
-  <form
-      action="#"
-      id="signup-form"
-      class="account-form hidden"
-      method="post">
+  <form action="#" id="signup-form" class="account-form hidden" method="post">
     <h4>Create Account</h4>
     <div class="login-input">
       <label for="signup-name">name</label>
@@ -130,9 +130,8 @@
 
 </section>
 
-<!-- User profile -->
+<!-- User profile, initially hidden -->
 <section id="user-profile" class="hidden">
-
   <div class="user-profile-box container">
     <h4>User Profile Info</h4>
     <section>
@@ -141,7 +140,6 @@
       <div>Account Created: <span id="profile-account-date"></span></div>
     </section>
   </div>
-
 </section>
 
 <!-- Library JS & our JS -->
